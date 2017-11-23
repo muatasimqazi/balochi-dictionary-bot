@@ -97,8 +97,8 @@ var myCallback = function (error, options, response) {
         */
         var word_display = '';
           var word_list = ''
-        if (!response.rows[2]) {
-           word_list = response.rows[1];
+        if (response.rows[2]) {
+           word_list = response.rows[2];
 
           word.title = word_list.cellsArray[0]
           word.pronunciation = word_list.cellsArray[1]
@@ -108,8 +108,8 @@ var myCallback = function (error, options, response) {
           console.log(word.definition);
           word_display = '*' + word.title + '*\n' + '(`' + word.pronunciation + '`)' + '\n' + word.definition + '\n'// + JSON.stringify(response.rows)
 
-        } else {
-          word_list = response.rows[2];
+        }
+          word_list = response.rows[1];
 
           word.title = word_list.cellsArray[0]
           word.pronunciation = word_list.cellsArray[1]

@@ -97,6 +97,42 @@ function storeToken(token) {
   console.log('Token stored to ' + TOKEN_PATH);
 }
 
+/**
+ * Print the names and majors of students in a sample spreadsheet:
+ * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
+ */
+function listMajors(auth) {
+  var sheets = google.sheets('v4');
+  sheets.spreadsheets.values.get({
+    auth: auth,
+    spreadsheetId: '1kZPxVeYzRQQNFGjeIkZ7w_jZN1Cl2NgO3xBi5uIQYII',
+    range: 'Sheet1!C3:D',
+  }, function(err, response) {
+    if (err) {
+      console.log('The API returned an error: ' + err);
+      return;
+    }
+    var rows = response.values;
+    if (rows.length == 0) {
+      console.log('No data found.');
+    } else {
+    var numRows = response.values ? response.values.length : 0;
+    console.log('%d rows retrieved.', numRows);
+
+    // console.log(words.length);
+    var word = 'آبرچ';
+    // console.log(word[300][0]);
+    for(var i = 0; i < rows.length; i++) {
+        if(rows[i][0] === word) {
+          console.log(rows[i][0]);
+          console.log(rows[i][1]);
+        }
+    }
+  }
+  });
+}
+
+
 
 
 module.exports = {

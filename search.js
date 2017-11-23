@@ -97,7 +97,7 @@ function storeToken(token) {
   console.log('Token stored to ' + TOKEN_PATH);
 }
 
-var word = {};
+var word = {title: 'k', definition: 'j'};
 /**
  * Print the names and majors of students in a sample spreadsheet:
  * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
@@ -127,9 +127,8 @@ function listMajors(auth) {
         if(rows[i][0] === lookup) {
           word.title = rows[i][0];
           word.definition = rows[i][1];
-          console.log(rows[i][0]);
-          console.log(rows[i][1]);
-          console.log(word.title);
+          // console.log(rows[i][0]);
+          // console.log(rows[i][1]);
         }
     }
   }

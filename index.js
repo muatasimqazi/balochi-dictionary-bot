@@ -96,13 +96,14 @@ var myCallback = function (error, options, response) {
           response.html.
         */
         var word_list = response.rows[1];
+
         word.title = word_list.cellsArray[0]
         word.pronunciation = word_list.cellsArray[1]
         word.definition = word_list.cellsArray[2]
         console.log(word.title);
         console.log(word.pronunciation);
         console.log(word.definition);
-        sendText(sender, '*' + word.title + '*\n' + '(`' + word.pronunciation + '`)' + '\n' + word.definition)
+        sendText(sender, '*' + word.title + '*\n' + '(`' + word.pronunciation + '`)' + '\n' + word.definition + '\n' + response.rows)
 
       } else {
         word.error = "Word not found"

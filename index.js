@@ -9,7 +9,7 @@ var word = {
 }
 
 var sheetrock = require('sheetrock');
-
+var query = "select B, D, E where C = 'بلوچی'",
 
 const app = express()
 
@@ -40,7 +40,8 @@ app.post('/webhook/', function(req, res) {
     let sender = event.sender.id
     if(event.message && event.message.text ) {
       let text = event.message.text
-      setText(text);
+      query = "select B, D, E where C = '" + text + "'",
+      // setText(text);
       // sendText(sender, "Text echo : \n" + text.substring(0, 100) + '\n' + word.title + ' ' + word.definition)
       sendText(sender, word.title + '\n' + word.pronunciation + '\n' + word.definition)
     }
@@ -76,7 +77,7 @@ var myCallback = function (error, options, response) {
 
   sheetrock({
     url: 'https://docs.google.com/spreadsheets/d/1kZPxVeYzRQQNFGjeIkZ7w_jZN1Cl2NgO3xBi5uIQYII/edit?usp=sharing#gid=0',
-    query: "select B, D, E where C = '" + getText() + "'",
+    query: query, //"select B, D, E where C = '" + getText() + "'",
     callback: myCallback
   });
 

@@ -137,5 +137,5 @@ function listMajors(auth) {
 
 
 
-
+console.log(word);
 module.exports = word;

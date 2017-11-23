@@ -127,8 +127,8 @@ function listMajors(auth) {
         if(rows[i][0] === lookup) {
           word.title = rows[i][0];
           word.definition = rows[i][1];
-          // console.log(rows[i][0]);
-          // console.log(rows[i][1]);
+          console.log(rows[i][0]);
+          console.log(rows[i][1]);
         }
     }
   }

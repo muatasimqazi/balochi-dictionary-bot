@@ -7,6 +7,7 @@ const request = require('request')
 // var word = require('./search');
 var word = {
 }
+word.error = '';
 
 var sheetrock = require('sheetrock');
 var query = "select B, D, E where C = 'بلوچی'"
@@ -46,7 +47,7 @@ app.post('/webhook/', function(req, res) {
 
       // setText(text);
       // sendText(sender, "Text echo : \n" + text.substring(0, 100) + '\n' + word.title + ' ' + word.definition)
-      sendText(sender, word.title + '\n' + word.pronunciation + '\n' + word.definition)
+      sendText(sender, word.title + '\n' + word.pronunciation + '\n' + word.definition + '\n' + word.error)
     }
   }
   res.sendStatus(200)
@@ -75,6 +76,8 @@ var myCallback = function (error, options, response) {
     console.log(word.title);
     console.log(word.pronunciation);
     console.log(word.definition);
+  } else {
+    word.error = "Word not found"
   }
 };
 

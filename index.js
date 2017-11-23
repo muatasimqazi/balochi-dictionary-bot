@@ -51,6 +51,7 @@ app.post('/webhook/', function(req, res) {
 var word_req = 'بلوچی';
 function getText(text) {
   word_req = text;
+  console.log("text " + text)
 }
 var myCallback = function (error, options, response) {
   if (!error) {

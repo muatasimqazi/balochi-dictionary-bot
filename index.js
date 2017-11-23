@@ -10,9 +10,6 @@ var word = {
 
 var sheetrock = require('sheetrock');
 
- var word_req = 'وشبود';
-
-
 
 const app = express()
 
@@ -43,26 +40,35 @@ app.post('/webhook/', function(req, res) {
     let sender = event.sender.id
     if(event.message && event.message.text ) {
       let text = event.message.text
-      sheetrock({
-        url: 'https://docs.google.com/spreadsheets/d/1kZPxVeYzRQQNFGjeIkZ7w_jZN1Cl2NgO3xBi5uIQYII/edit?usp=sharing#gid=0',
-        query: "select B, D, E where C = '" + word_req + "'",
-        callback: function (error, options, response) {
-          // console.log(response.rows[1]);
-          var word_list = response.rows[1];
-          word.title = word_list.cellsArray[0]
-          word.pronunciation = word_list.cellsArray[1]
-          word.definition = word_list.cellsArray[2]
-          console.log(word.title);
-          console.log(word.pronunciation);
-          console.log(word.definition);
-        }
-      });
+      getText(text);
       // sendText(sender, "Text echo : \n" + text.substring(0, 100) + '\n' + word.title + ' ' + word.definition)
       sendText(sender, word.title + '\n' + word.pronunciation + '\n' + word.definition)
     }
   }
   res.sendStatus(200)
 })
+
+var word_req = '';
+function getText(text) {
+  word_req = text;
+  sheetrock({
+    url: 'https://docs.google.com/spreadsheets/d/1kZPxVeYzRQQNFGjeIkZ7w_jZN1Cl2NgO3xBi5uIQYII/edit?usp=sharing#gid=0',
+    query: "select B, D, E where C = '" + word_req + "'",
+    callback: function (error, options, response) {
+      // console.log(response.rows[1]);
+      var word_list = response.rows[1];
+      word.title = word_list.cellsArray[0]
+      word.pronunciation = word_list.cellsArray[1]
+      word.definition = word_list.cellsArray[2]
+      console.log(word.title);
+      console.log(word.pronunciation);
+      console.log(word.definition);
+    }
+  });
+}
+
+
+
 
 
 

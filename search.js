@@ -99,7 +99,7 @@ function storeToken(token) {
 
 
 
-module.exports =
+module.exports = {
     firstName: 'James',
     lastName: 'Bond'
 }

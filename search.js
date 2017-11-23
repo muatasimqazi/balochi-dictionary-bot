@@ -97,6 +97,7 @@ function storeToken(token) {
   console.log('Token stored to ' + TOKEN_PATH);
 }
 
+var word = {title: '', definition: ''};
 /**
  * Print the names and majors of students in a sample spreadsheet:
  * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
@@ -120,12 +121,14 @@ function listMajors(auth) {
     console.log('%d rows retrieved.', numRows);
 
     // console.log(words.length);
-    var word = 'آبرچ';
+    var lookup = 'آبرچ';
     // console.log(word[300][0]);
     for(var i = 0; i < rows.length; i++) {
-        if(rows[i][0] === word) {
-          console.log(rows[i][0]);
-          console.log(rows[i][1]);
+        if(rows[i][0] === lookup) {
+          word.title = rows[i][0];
+          word.definition = rows[i][1];
+          // console.log(rows[i][0]);
+          // console.log(rows[i][1]);
         }
     }
   }
@@ -135,7 +138,4 @@ function listMajors(auth) {
 
 
 
-module.exports = {
-    firstName: 'James',
-    lastName: 'Bond'
-}
+module.exports = word;

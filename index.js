@@ -4,7 +4,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 
-var person = require('./search');
+var word = require('./search');
 
 const app = express()
 
@@ -35,7 +35,7 @@ app.post('/webhook/', function(req, res) {
     let sender = event.sender.id
     if(event.message && event.message.text ) {
       let text = event.message.text
-      sendText(sender, "Text echo: " + text.substring(0, 100) + ' ' + person.firstName + ' ' + person.lastName)
+      sendText(sender, "Text echo: " + text.substring(0, 100) + ' ' + word.title + ' ' + word.definition)
     }
   }
   res.sendStatus(200)

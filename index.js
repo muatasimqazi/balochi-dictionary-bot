@@ -9,7 +9,7 @@ var word = {
 }
 
 var sheetrock = require('sheetrock');
-var query = "select B, D, E where C = 'بلوچی'",
+var query = "select B, D, E where C = 'بلوچی'"
 
 const app = express()
 

@@ -43,7 +43,7 @@ app.post('/webhook/', function(req, res) {
       let qu = "select B, D, E where C = '" + text + "'"
       console.log("IN");
       getData(qu);
-      continue;
+
       // setText(text);
       // sendText(sender, "Text echo : \n" + text.substring(0, 100) + '\n' + word.title + ' ' + word.definition)
       sendText(sender, word.title + '\n' + word.pronunciation + '\n' + word.definition)

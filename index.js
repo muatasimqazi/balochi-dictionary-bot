@@ -5,7 +5,8 @@ const bodyParser = require('body-parser')
 const request = require('request')
 
 // var word = require('./search');
-var word = ''
+var word = {
+}
 
 var sheetrock = require('sheetrock');
 
@@ -15,16 +16,13 @@ sheetrock({
   query: "select B, D, E where C = 'وشبود'",
   callback: function (error, options, response) {
     // console.log(response.rows[1]);
-    var word = response.rows[1];
-    var word_title = word.cellsArray[0]
-    var word_pron = word.cellsArray[1]
-    var word_def = word.cellsArray[2]
-    console.log(word_title);
-    console.log(word_pron);
-    console.log(word_def);
-
-
-
+    var word_list = response.rows[1];
+    word.title = word.cellsArray[0]
+    word.pronunciation = word.cellsArray[1]
+    word.definition = word.cellsArray[2]
+    console.log(word.title);
+    console.log(word.pronunciation);
+    console.log(word.definition);
   }
 });
 

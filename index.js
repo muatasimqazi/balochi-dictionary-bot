@@ -44,7 +44,7 @@ app.post('/webhook/', function(req, res) {
       let qu = "select B, D, E where C = '" + text + "'"
       console.log("IN");
       console.log(word);
-      getData(qu);
+      getData(qu, sender);
 
       // setText(text);
       // sendText(sender, "Text echo : \n" + text.substring(0, 100) + '\n' + word.title + ' ' + word.definition)
@@ -83,11 +83,30 @@ var myCallback = function (error, options, response) {
   sendText(sender, word.title + '\n' + word.pronunciation + '\n' + word.definition + '\n' + word.error)
 };
 
-  var getData = function(qu) {
+  var getData = function(qu, sender) {
     sheetrock({
     url: 'https://docs.google.com/spreadsheets/d/1kZPxVeYzRQQNFGjeIkZ7w_jZN1Cl2NgO3xBi5uIQYII/edit?usp=sharing#gid=0',
     query: qu, //"select B, D, E where C = '" + getText() + "'",
-    callback: myCallback
+    callback: function (error, options, response) {
+      console.log("bef");
+      if (!error) {
+        console.log('aftr ' + word_req);
+        /*
+          Parse response.data, loop through response.rows, or do something with
+          response.html.
+        */
+        var word_list = response.rows[1];
+        word.title = word_list.cellsArray[0]
+        word.pronunciation = word_list.cellsArray[1]
+        word.definition = word_list.cellsArray[2]
+        console.log(word.title);
+        console.log(word.pronunciation);
+        console.log(word.definition);
+      } else {
+        word.error = "Word not found"
+      }
+      sendText(sender, word.title + '\n' + word.pronunciation + '\n' + word.definition + '\n' + word.error)
+    }
   });
 }
 

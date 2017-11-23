@@ -9,29 +9,14 @@ var word = ''
 
 var sheetrock = require('sheetrock');
 
-var myCallback = function (error, options, response) {
-  var myCallback = function (error, options, response) {
-  if (!error) {
-    console.log("no erro");
-  /*
-  if (response.rows[1] == undefined || error) {
 
-
-      console.log(error);
-      $('#error-message').html("<h5>Your search terms did not match any definitions.</h5><p>Check you have typed the word correctly. For accurate results, please type the word without any <b>diacritic mark(s)</b> or <span class='orange-text text-darken-3'>زَبر، زِیر، پیش </span>etc.</p>");
-      $('#suggestion').text('Or did you mean to search for one of these entries?');
-      // query = "select A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P where " + column + " like " + "\"%" + word.substring(0, 3) + "%\"";
-      query = "select A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U  where " + column + " starts with " + "\"" + word.substring(0, 5) + "\"";
-      //getWord(query, true);
-      */
-    }
-
-  };
 
 sheetrock({
   url: 'https://docs.google.com/spreadsheets/d/1kZPxVeYzRQQNFGjeIkZ7w_jZN1Cl2NgO3xBi5uIQYII/edit?usp=sharing#gid=0',
   query: "select A,B,C,D,E,L where E = 'Both' order by L desc",
-  callback: myCallback
+  callback: function (error, options, response) {
+    console.log(error, options, response);
+  }
 });
 
 const app = express()

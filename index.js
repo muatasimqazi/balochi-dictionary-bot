@@ -51,21 +51,29 @@ app.post('/webhook/', function(req, res) {
 var word_req = 'بلوچی';
 function getText(text) {
   word_req = text;
+}
+var myCallback = function (error, options, response) {
+  if (!error) {
+    /*
+      Parse response.data, loop through response.rows, or do something with
+      response.html.
+    */
+    var word_list = response.rows[1];
+    word.title = word_list.cellsArray[0]
+    word.pronunciation = word_list.cellsArray[1]
+    word.definition = word_list.cellsArray[2]
+    console.log(word.title);
+    console.log(word.pronunciation);
+    console.log(word.definition);
+  }
+};
+
   sheetrock({
     url: 'https://docs.google.com/spreadsheets/d/1kZPxVeYzRQQNFGjeIkZ7w_jZN1Cl2NgO3xBi5uIQYII/edit?usp=sharing#gid=0',
     query: "select B, D, E where C = '" + word_req + "'",
-    callback: function (error, options, response) {
-      // console.log(response.rows[1]);
-      var word_list = response.rows[1];
-      word.title = word_list.cellsArray[0]
-      word.pronunciation = word_list.cellsArray[1]
-      word.definition = word_list.cellsArray[2]
-      console.log(word.title);
-      console.log(word.pronunciation);
-      console.log(word.definition);
-    }
+    callback: myCallback
   });
-}
+
 
 
 

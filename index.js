@@ -4,6 +4,12 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 
+var person = require('search.js');
+
+
+
+console.log(person1.fullName());
+
 const app = express()
 
 app.set('port', (process.env.PORT || 5000))
@@ -25,7 +31,7 @@ app.get('/webhook/', function(req, res) {
   res.send("Wrong token")
 })
 
-
+var person1 = new person('James', 'Bond');
 app.post('/webhook/', function(req, res) {
   let messaging_events = req.body.entry[0].messaging
   for(let i = 0; i < messaging_events.length; i++) {
@@ -33,11 +39,15 @@ app.post('/webhook/', function(req, res) {
     let sender = event.sender.id
     if(event.message && event.message.text ) {
       let text = event.message.text
-      sendText(sender, "Text echo: " + text.substring(0, 100))
+      sendText(sender, "Text echo: " + text.substring(0, 100) + ' ' + person1.fullName())
     }
   }
   res.sendStatus(200)
 })
+
+
+
+// console.log(person1.fullName());
 
 function sendText(sender, text) {
   let messageData = {text: text}

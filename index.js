@@ -6,10 +6,6 @@ const request = require('request')
 
 var person = require('./search');
 
-
-
-console.log(person1.fullName());
-
 const app = express()
 
 app.set('port', (process.env.PORT || 5000))

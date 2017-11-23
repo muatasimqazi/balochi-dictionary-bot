@@ -74,8 +74,7 @@ function getNewToken(oauth2Client, callback) {
         return;
       }
       oauth2Client.credentials = token;
-      var tok = "4/X4Eb-QJycc6t8vICvFY6HLZjNhhZU0x9QsxuSggvfi0"
-      storeToken(tok);
+      storeToken(token);
       callback(oauth2Client);
     });
   });

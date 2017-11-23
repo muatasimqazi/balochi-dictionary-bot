@@ -102,7 +102,7 @@ var myCallback = function (error, options, response) {
         console.log(word.title);
         console.log(word.pronunciation);
         console.log(word.definition);
-        sendText(sender, word.title + '\n' + word.pronunciation + '\n' + word.definition)
+        sendText(sender, '*' + word.title + '*\n' + word.pronunciation + '\n' + word.definition)
 
       } else {
         word.error = "Word not found"
@@ -113,13 +113,6 @@ var myCallback = function (error, options, response) {
   });
 }
 
-
-
-
-
-
-
-// console.log(person1.fullName());
 
 function sendText(sender, text) {
   let messageData = {text: text}

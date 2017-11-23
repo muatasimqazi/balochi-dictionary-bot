@@ -39,7 +39,7 @@ app.post('/webhook/', function(req, res) {
     let sender = event.sender.id
     if(event.message && event.message.text ) {
       let text = event.message.text
-      sendText(sender, "Text echo: " + text.substring(0, 100) + ' ' + person1.fullName())
+      sendText(sender, "Text echo: " + text.substring(0, 100) + ' ' + person.firstName + ' ' + person.lastName)
     }
   }
   res.sendStatus(200)

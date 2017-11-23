@@ -40,7 +40,7 @@ app.post('/webhook/', function(req, res) {
     let sender = event.sender.id
     if(event.message && event.message.text ) {
       let text = event.message.text
-      getText(text);
+      setText(text);
       // sendText(sender, "Text echo : \n" + text.substring(0, 100) + '\n' + word.title + ' ' + word.definition)
       sendText(sender, word.title + '\n' + word.pronunciation + '\n' + word.definition)
     }
@@ -49,9 +49,12 @@ app.post('/webhook/', function(req, res) {
 })
 
 var word_req = 'بلوچی';
-function getText(text) {
+function setText(text) {
   word_req = text;
   console.log("text " + text)
+}
+function getText() {
+  return word_req
 }
 var myCallback = function (error, options, response) {
   console.log("bef");
@@ -73,7 +76,7 @@ var myCallback = function (error, options, response) {
 
   sheetrock({
     url: 'https://docs.google.com/spreadsheets/d/1kZPxVeYzRQQNFGjeIkZ7w_jZN1Cl2NgO3xBi5uIQYII/edit?usp=sharing#gid=0',
-    query: "select B, D, E where C = '" + word_req + "'",
+    query: "select B, D, E where C = '" + getText() + "'",
     callback: myCallback
   });
 

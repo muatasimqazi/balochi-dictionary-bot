@@ -120,7 +120,7 @@ var myCallback = function (error, options, response) {
           word_display += '*' + word.title + '*\n' + '(`' + word.pronunciation + '`)' + '\n' + word.definition + '\n'// + JSON.stringify(response.rows)
 
 
-        }
+
               sendText(sender, word_display)
 
       } else {

@@ -4,7 +4,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 
-var person = require('search');
+var person = require('./search');
 
 
 

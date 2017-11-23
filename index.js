@@ -17,9 +17,9 @@ sheetrock({
   callback: function (error, options, response) {
     // console.log(response.rows[1]);
     var word_list = response.rows[1];
-    word.title = word.cellsArray[0]
-    word.pronunciation = word.cellsArray[1]
-    word.definition = word.cellsArray[2]
+    word.title = word_list.cellsArray[0]
+    word.pronunciation = word_list.cellsArray[1]
+    word.definition = word_list.cellsArray[2]
     console.log(word.title);
     console.log(word.pronunciation);
     console.log(word.definition);

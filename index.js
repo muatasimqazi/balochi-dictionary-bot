@@ -10,14 +10,24 @@ var word = ''
 var sheetrock = require('sheetrock');
 
 
-
 sheetrock({
   url: 'https://docs.google.com/spreadsheets/d/1kZPxVeYzRQQNFGjeIkZ7w_jZN1Cl2NgO3xBi5uIQYII/edit?usp=sharing#gid=0',
-  query: "select A, B, C where C = 'بلوچی'",
+  query: "select B, D, E where C = 'وشبود'",
   callback: function (error, options, response) {
-    console.log(error, options, response);
+    // console.log(response.rows[1]);
+    var word = response.rows[1];
+    var word_title = word.cellsArray[0]
+    var word_pron = word.cellsArray[1]
+    var word_def = word.cellsArray[2]
+    console.log(word_title);
+    console.log(word_pron);
+    console.log(word_def);
+
+
+
   }
 });
+
 
 const app = express()
 

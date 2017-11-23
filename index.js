@@ -40,7 +40,8 @@ app.post('/webhook/', function(req, res) {
     let sender = event.sender.id
     if(event.message && event.message.text ) {
       let text = event.message.text
-      query = "select B, D, E where C = '" + text + "'",
+      query = "select B, D, E where C = '" + text + "'"
+      console.log("IN");
       // setText(text);
       // sendText(sender, "Text echo : \n" + text.substring(0, 100) + '\n' + word.title + ' ' + word.definition)
       sendText(sender, word.title + '\n' + word.pronunciation + '\n' + word.definition)

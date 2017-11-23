@@ -128,7 +128,43 @@ var myCallback = function (error, options, response) {
           console.log(word.title);
           console.log(word.pronunciation);
           console.log(word.definition);
-          word_display += '*' + word.title + '*\n' + '(`' + word.pronunciation + '`)' + '\n' + word.definition + '\n\n\n\n\n'// + JSON.stringify(response.rows)
+          word_display += '*' + word.title + '*\n' + '(`' + word.pronunciation + '`)' + '\n' + word.definition + '\n\n\n'// + JSON.stringify(response.rows)
+
+        }
+        if (response.rows[4]) {
+           word_list = response.rows[4];
+
+          word.title = word_list.cellsArray[0]
+          word.pronunciation = word_list.cellsArray[1]
+          word.definition = word_list.cellsArray[2]
+          console.log(word.title);
+          console.log(word.pronunciation);
+          console.log(word.definition);
+          word_display += '*' + word.title + '*\n' + '(`' + word.pronunciation + '`)' + '\n' + word.definition + '\n\n\n'// + JSON.stringify(response.rows)
+
+        }
+        if (response.rows[5]) {
+           word_list = response.rows[5];
+
+          word.title = word_list.cellsArray[0]
+          word.pronunciation = word_list.cellsArray[1]
+          word.definition = word_list.cellsArray[2]
+          console.log(word.title);
+          console.log(word.pronunciation);
+          console.log(word.definition);
+          word_display += '*' + word.title + '*\n' + '(`' + word.pronunciation + '`)' + '\n' + word.definition + '\n\n\n'// + JSON.stringify(response.rows)
+
+        }
+        if (response.rows[6]) {
+           word_list = response.rows[6];
+
+          word.title = word_list.cellsArray[0]
+          word.pronunciation = word_list.cellsArray[1]
+          word.definition = word_list.cellsArray[2]
+          console.log(word.title);
+          console.log(word.pronunciation);
+          console.log(word.definition);
+          word_display += '*' + word.title + '*\n' + '(`' + word.pronunciation + '`)' + '\n' + word.definition + '\n\n\n'// + JSON.stringify(response.rows)
 
         }
 

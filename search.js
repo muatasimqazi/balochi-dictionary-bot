@@ -140,4 +140,4 @@ function listMajors(auth) {
 
 
 console.log(word);
-module.exports = auth;
+module.exports = word;

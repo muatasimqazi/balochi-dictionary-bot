@@ -4,13 +4,35 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 
+// var word = require('./search');
+var word = ''
+
+var sheetrock = require('sheetrock');
+
+var myCallback = function (error, options, response) {
+  var myCallback = function (error, options, response) {
+  if (!error) {
+    console.log("no erro");
+  /*
+  if (response.rows[1] == undefined || error) {
 
 
-var fs = require('fs');
-var readline = require('readline');
-var google = require('googleapis');
-var googleAuth = require('google-auth-library');
+      console.log(error);
+      $('#error-message').html("<h5>Your search terms did not match any definitions.</h5><p>Check you have typed the word correctly. For accurate results, please type the word without any <b>diacritic mark(s)</b> or <span class='orange-text text-darken-3'>زَبر، زِیر، پیش </span>etc.</p>");
+      $('#suggestion').text('Or did you mean to search for one of these entries?');
+      // query = "select A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P where " + column + " like " + "\"%" + word.substring(0, 3) + "%\"";
+      query = "select A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U  where " + column + " starts with " + "\"" + word.substring(0, 5) + "\"";
+      //getWord(query, true);
+      */
+    }
 
+  };
+
+sheetrock({
+  url: 'https://docs.google.com/spreadsheets/d/1kZPxVeYzRQQNFGjeIkZ7w_jZN1Cl2NgO3xBi5uIQYII/edit?usp=sharing#gid=0',
+  query: "select A,B,C,D,E,L where E = 'Both' order by L desc",
+  callback: myCallback
+});
 
 const app = express()
 
@@ -22,145 +44,6 @@ app.use(bodyParser.json())
 app.get('/', function(req, res) {
   res.send('Hi I am a chatbot')
 })
-
-
-
-// google
-
-
-// If modifying these scopes, delete your previously saved credentials
-// at ~/.credentials/sheets.googleapis.com-nodejs-quickstart.json
-var SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
-var TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH ||
-    process.env.USERPROFILE) + '/.credentials/';
-var TOKEN_PATH = TOKEN_DIR + 'sheets.googleapis.com-nodejs-quickstart.json';
-
-// Load client secrets from a local file.
-fs.readFile('client_secret.json', function processClientSecrets(err, content) {
-  if (err) {
-    console.log('Error loading client secret file: ' + err);
-    return;
-  }
-  // Authorize a client with the loaded credentials, then call the
-  // Google Sheets API.
-  authorize(JSON.parse(content), listMajors);
-});
-
-/**
- * Create an OAuth2 client with the given credentials, and then execute the
- * given callback function.
- *
- * @param {Object} credentials The authorization client credentials.
- * @param {function} callback The callback to call with the authorized client.
- */
-function authorize(credentials, callback) {
-  var clientSecret = credentials.installed.client_secret;
-  var clientId = credentials.installed.client_id;
-  var redirectUrl = credentials.installed.redirect_uris[0];
-  var auth = new googleAuth();
-  var oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);
-
-  // Check if we have previously stored a token.
-  fs.readFile(TOKEN_PATH, function(err, token) {
-    if (err) {
-      getNewToken(oauth2Client, callback);
-    } else {
-      oauth2Client.credentials = JSON.parse(token);
-      callback(oauth2Client);
-    }
-  });
-}
-
-/**
- * Get and store new token after prompting for user authorization, and then
- * execute the given callback with the authorized OAuth2 client.
- *
- * @param {google.auth.OAuth2} oauth2Client The OAuth2 client to get token for.
- * @param {getEventsCallback} callback The callback to call with the authorized
- *     client.
- */
-function getNewToken(oauth2Client, callback) {
-  var authUrl = oauth2Client.generateAuthUrl({
-    access_type: 'offline',
-    scope: SCOPES
-  });
-  console.log('Authorize this app by visiting this url: ', authUrl);
-  var rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
-  rl.question('Enter the code from that page here: ', function(code) {
-    rl.close();
-    oauth2Client.getToken(code, function(err, token) {
-      if (err) {
-        console.log('Error while trying to retrieve access token', err);
-        return;
-      }
-      oauth2Client.credentials = token;
-      storeToken(token);
-      callback(oauth2Client);
-    });
-  });
-}
-
-/**
- * Store token to disk be used in later program executions.
- *
- * @param {Object} token The token to store to disk.
- */
-function storeToken(token) {
-  try {
-    fs.mkdirSync(TOKEN_DIR);
-  } catch (err) {
-    if (err.code != 'EEXIST') {
-      throw err;
-    }
-  }
-  fs.writeFile(TOKEN_PATH, JSON.stringify(token));
-  console.log('Token stored to ' + TOKEN_PATH);
-}
-
-// var word = {title: 'k', definition: 'j'};
-var word = {}
-/**
- * Print the names and majors of students in a sample spreadsheet:
- * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
- */
-function listMajors(auth) {
-  var sheets = google.sheets('v4');
-  sheets.spreadsheets.values.get({
-    auth: auth,
-    spreadsheetId: '1kZPxVeYzRQQNFGjeIkZ7w_jZN1Cl2NgO3xBi5uIQYII',
-    range: 'Sheet1!C3:D',
-  }, function(err, response) {
-    if (err) {
-      console.log('The API returned an error: ' + err);
-      return;
-    }
-    var rows = response.values;
-    if (rows.length == 0) {
-      console.log('No data found.');
-    } else {
-    var numRows = response.values ? response.values.length : 0;
-    console.log('%d rows retrieved.', numRows);
-
-    // console.log(words.length);
-    var lookup = 'آبرچ';
-    // console.log(word[300][0]);
-    for(var i = 0; i < rows.length; i++) {
-        if(rows[i][0] === lookup) {
-          word.title = rows[i][0];
-          word.definition = rows[i][1];
-          console.log(rows[i][0]);
-          console.log(rows[i][1]);
-          console.log(word.title + ' title');
-        }
-    }
-  }
-  });
-}
-
-// google end
 
 let token = "EAAFfncDwieMBAIzNr8GWU5pBKsOv1tDyUm8mZABiUoF2qOfWrutd6TmYud3bhokT5CpEFXq9bkMnABeBpzbwXZCLrcM2fVMuKjHvJ665BhiWjw7gSzGBj1TTWK0QgLAzZAAAgA792xrwrKa1kkZCCrwRZAito20LsOGa483hGHwZDZD"
 
@@ -208,11 +91,6 @@ function sendText(sender, text) {
     }
   })
 }
-
-
-
-console.log(word);
-
 
 app.listen(app.get('port'), function() {
   console.log("running port");

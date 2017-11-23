@@ -40,7 +40,7 @@ app.post('/webhook/', function(req, res) {
     let sender = event.sender.id
     if(event.message && event.message.text ) {
       let text = event.message.text
-      qu = "select B, D, E where C = '" + text + "'"
+      let qu = "select B, D, E where C = '" + text + "'"
       console.log("IN");
       getData(qu);
       // setText(text);

@@ -102,10 +102,13 @@ var myCallback = function (error, options, response) {
         console.log(word.title);
         console.log(word.pronunciation);
         console.log(word.definition);
+        sendText(sender, word.title + '\n' + word.pronunciation + '\n' + word.definition)
+
       } else {
         word.error = "Word not found"
-      }
-      sendText(sender, word.title + '\n' + word.pronunciation + '\n' + word.definition + '\n' + word.error)
+
+      sendText(sender, word.error)
+        }
     }
   });
 }

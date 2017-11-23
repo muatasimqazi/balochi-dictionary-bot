@@ -95,9 +95,10 @@ var myCallback = function (error, options, response) {
           Parse response.data, loop through response.rows, or do something with
           response.html.
         */
-
+        var word_display = '';
+          var word_list = ''
         if (!response.rows[2]) {
-          var word_list = response.rows[1];
+           word_list = response.rows[1];
 
           word.title = word_list.cellsArray[0]
           word.pronunciation = word_list.cellsArray[1]
@@ -105,10 +106,10 @@ var myCallback = function (error, options, response) {
           console.log(word.title);
           console.log(word.pronunciation);
           console.log(word.definition);
-          sendText(sender, '*' + word.title + '*\n' + '(`' + word.pronunciation + '`)' + '\n' + word.definition + '\n' + JSON.stringify(response.rows))
+          word_display = '*' + word.title + '*\n' + '(`' + word.pronunciation + '`)' + '\n' + word.definition + '\n'// + JSON.stringify(response.rows)
 
         } else {
-          var word_list = response.rows[2];
+          word_list = response.rows[2];
 
           word.title = word_list.cellsArray[0]
           word.pronunciation = word_list.cellsArray[1]
@@ -116,9 +117,11 @@ var myCallback = function (error, options, response) {
           console.log(word.title);
           console.log(word.pronunciation);
           console.log(word.definition);
-          sendText(sender, '*' + word.title + '*\n' + '(`' + word.pronunciation + '`)' + '\n' + word.definition + '\n' + JSON.stringify(response.rows))
+          word_display += '*' + word.title + '*\n' + '(`' + word.pronunciation + '`)' + '\n' + word.definition + '\n'// + JSON.stringify(response.rows)
+
 
         }
+              sendText(sender, word_display)
 
       } else {
         word.error = "Word not found"

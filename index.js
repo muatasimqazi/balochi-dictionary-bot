@@ -54,7 +54,9 @@ function getText(text) {
   console.log("text " + text)
 }
 var myCallback = function (error, options, response) {
+  console.log("bef");
   if (!error) {
+    console.log('aftr ' + word_req);
     /*
       Parse response.data, loop through response.rows, or do something with
       response.html.

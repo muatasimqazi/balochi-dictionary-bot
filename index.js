@@ -13,7 +13,7 @@ var sheetrock = require('sheetrock');
 
 sheetrock({
   url: 'https://docs.google.com/spreadsheets/d/1kZPxVeYzRQQNFGjeIkZ7w_jZN1Cl2NgO3xBi5uIQYII/edit?usp=sharing#gid=0',
-  query: "select A,B,C,D,E,L where E = 'Both' order by L desc",
+  query: "select A, B, C where C = 'بلوچی'",
   callback: function (error, options, response) {
     console.log(error, options, response);
   }

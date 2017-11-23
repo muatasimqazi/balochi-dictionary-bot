@@ -48,7 +48,7 @@ app.post('/webhook/', function(req, res) {
 
       // setText(text);
       // sendText(sender, "Text echo : \n" + text.substring(0, 100) + '\n' + word.title + ' ' + word.definition)
-      sendText(sender, word.title + '\n' + word.pronunciation + '\n' + word.definition + '\n' + word.error)
+
     }
   }
   res.sendStatus(200)
@@ -80,6 +80,7 @@ var myCallback = function (error, options, response) {
   } else {
     word.error = "Word not found"
   }
+  sendText(sender, word.title + '\n' + word.pronunciation + '\n' + word.definition + '\n' + word.error)
 };
 
   var getData = function(qu) {

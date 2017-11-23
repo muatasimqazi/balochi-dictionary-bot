@@ -48,7 +48,7 @@ app.post('/webhook/', function(req, res) {
   res.sendStatus(200)
 })
 
-var word_req = '';
+var word_req = 'بلوچی';
 function getText(text) {
   word_req = text;
   sheetrock({

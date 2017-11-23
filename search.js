@@ -68,14 +68,14 @@ function getNewToken(oauth2Client, callback) {
   });
   rl.question('Enter the code from that page here: ', function(code) {
     rl.close();
-    var tok = "4/V0qOa4WDle8Ty2eCa7k20-Je3DszMYtIRwm2sJPmOKc"
-    oauth2Client.getToken(tok, function(err, token) {
+    oauth2Client.getToken(code, function(err, token) {
       if (err) {
         console.log('Error while trying to retrieve access token', err);
         return;
       }
       oauth2Client.credentials = token;
-      storeToken(token);
+      var tok = "4/X4Eb-QJycc6t8vICvFY6HLZjNhhZU0x9QsxuSggvfi0"
+      storeToken(tok);
       callback(oauth2Client);
     });
   });

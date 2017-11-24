@@ -42,7 +42,7 @@ app.post('/webhook/', function(req, res) {
     let sender = event.sender.id
     if (event.message && event.message.text) {
       let text = event.message.text
-      let qu = "select B, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U where C = '" + text + "'"
+      let qu = "select B, D, E where C = '" + text + "'"
 
       // console.log(word);
       if(text.split(' ').length > 2) {
@@ -72,20 +72,13 @@ var getData = function(qu, sender) {
         */
         var word_display = '';
         var word_list = ''
-        var urdu = ''
 
         word_list = response.rows[1];
 
         word.title = word_list.cellsArray[0]
         word.pronunciation = word_list.cellsArray[1]
         word.definition = word_list.cellsArray[2]
-        word.urdu = word_list.cellsArray[9]
-        urdu = ''
-        if(word.urdu) {
-          urdu = '_اردو_: ' + word.urdu + '\n'
-        }
-        console.log("Urdu " + word.urdu);
-        word_display = '*' + word.title + '*\n' + '(`' + word.pronunciation + '`)' + '\n\n' + word.definition + '\n' + urdu + '\n\n\n' // + JSON.stringify(response.rows)
+        word_display = '*' + word.title + '*\n' + '(`' + word.pronunciation + '`)' + '\n' + word.definition + '\n\n\n' // + JSON.stringify(response.rows)
 
         if (response.rows[2]) {
           word_list = response.rows[2];
@@ -93,7 +86,7 @@ var getData = function(qu, sender) {
           word.title = word_list.cellsArray[0]
           word.pronunciation = word_list.cellsArray[1]
           word.definition = word_list.cellsArray[2]
-          word_display += '*' + word.title + '*\n' + '(`' + word.pronunciation + '`)' + '\n\n' + word.definition + '\n\n\n' // + JSON.stringify(response.rows)
+          word_display += '*' + word.title + '*\n' + '(`' + word.pronunciation + '`)' + '\n' + word.definition + '\n\n\n' // + JSON.stringify(response.rows)
 
         }
         if (response.rows[3]) {
@@ -102,7 +95,7 @@ var getData = function(qu, sender) {
           word.title = word_list.cellsArray[0]
           word.pronunciation = word_list.cellsArray[1]
           word.definition = word_list.cellsArray[2]
-          word_display += '*' + word.title + '*\n' + '(`' + word.pronunciation + '`)' + '\n\n' + word.definition + '\n\n\n' // + JSON.stringify(response.rows)
+          word_display += '*' + word.title + '*\n' + '(`' + word.pronunciation + '`)' + '\n' + word.definition + '\n\n\n' // + JSON.stringify(response.rows)
 
         }
         if (response.rows[4]) {
@@ -111,7 +104,7 @@ var getData = function(qu, sender) {
           word.title = word_list.cellsArray[0]
           word.pronunciation = word_list.cellsArray[1]
           word.definition = word_list.cellsArray[2]
-          word_display += '*' + word.title + '*\n' + '(`' + word.pronunciation + '`)' + '\n\n' + word.definition + '\n\n\n' // + JSON.stringify(response.rows)
+          word_display += '*' + word.title + '*\n' + '(`' + word.pronunciation + '`)' + '\n' + word.definition + '\n\n\n' // + JSON.stringify(response.rows)
 
         }
         if (response.rows[5]) {
@@ -120,7 +113,7 @@ var getData = function(qu, sender) {
           word.title = word_list.cellsArray[0]
           word.pronunciation = word_list.cellsArray[1]
           word.definition = word_list.cellsArray[2]
-          word_display += '*' + word.title + '*\n' + '(`' + word.pronunciation + '`)' + '\n\n' + word.definition + '\n\n\n' // + JSON.stringify(response.rows)
+          word_display += '*' + word.title + '*\n' + '(`' + word.pronunciation + '`)' + '\n' + word.definition + '\n\n\n' // + JSON.stringify(response.rows)
 
         }
         if (response.rows[6]) {
@@ -129,7 +122,7 @@ var getData = function(qu, sender) {
           word.title = word_list.cellsArray[0]
           word.pronunciation = word_list.cellsArray[1]
           word.definition = word_list.cellsArray[2]
-          word_display += '*' + word.title + '*\n' + '(`' + word.pronunciation + '`)' + '\n\n' + word.definition + '\n\n\n' // + JSON.stringify(response.rows)
+          word_display += '*' + word.title + '*\n' + '(`' + word.pronunciation + '`)' + '\n' + word.definition + '\n\n\n' // + JSON.stringify(response.rows)
 
         }
         sendText(sender, word_display)

@@ -72,6 +72,7 @@ var getData = function(qu, sender) {
         */
         var word_display = '';
         var word_list = ''
+        var urdu = ''
 
         word_list = response.rows[1];
 
@@ -79,8 +80,12 @@ var getData = function(qu, sender) {
         word.pronunciation = word_list.cellsArray[1]
         word.definition = word_list.cellsArray[2]
         word.urdu = word_list.cellsArray[9]
+        urdu = ''
+        if(word.urdu) {
+          urdu = '_اردو_' + word.urdu
+        }
         console.log("Urdu " + word.urdu);
-        word_display = '*' + word.title + '*\n' + '(`' + word.pronunciation + '`)' + '\n' + word.definition + word.urdu + '\n\n\n' // + JSON.stringify(response.rows)
+        word_display = '*' + word.title + '*\n' + '(`' + word.pronunciation + '`)' + '\n' + word.definition + '\n' + urdu + '\n\n\n' // + JSON.stringify(response.rows)
 
         if (response.rows[2]) {
           word_list = response.rows[2];

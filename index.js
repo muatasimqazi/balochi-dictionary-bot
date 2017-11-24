@@ -63,6 +63,7 @@ var getData = function(qu, sender) {
   sheetrock({
     url: 'https://docs.google.com/spreadsheets/d/1kZPxVeYzRQQNFGjeIkZ7w_jZN1Cl2NgO3xBi5uIQYII/edit?usp=sharing#gid=0',
     query: qu,
+    reset: true,
     callback: function(error, options, response) {
 
       if (!error) {

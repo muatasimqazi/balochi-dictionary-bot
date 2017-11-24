@@ -128,7 +128,7 @@ var getData = function(qu, sender) {
         sendText(sender, word_display)
 
       } else {
-        word.error = "Word not found! \nIf you intend to send us a message, please write us a message that is longer than two words. We will get back to you shortly."
+        word.error = "Word not found! \n\nFor accurate results, please type the word without any diacritic mark(s) or زَبر، زِیر، پیش etc.\n\n\nIf you intend to send us a message, please write us a message that is longer than two words. We will get back to you shortly."
 
         sendText(sender, word.error)
       }

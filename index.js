@@ -78,7 +78,7 @@ var getData = function(qu, sender) {
         word.title = word_list.cellsArray[0]
         word.pronunciation = word_list.cellsArray[1]
         word.definition = word_list.cellsArray[2]
-        word.urdu = word_list.cellsArray[3]
+        word.urdu = word_list.cellsArray[9]
         console.log("Urdu " + word.urdu);
         word_display = '*' + word.title + '*\n' + '(`' + word.pronunciation + '`)' + '\n' + word.definition + word.urdu + '\n\n\n' // + JSON.stringify(response.rows)
 

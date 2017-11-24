@@ -82,7 +82,7 @@ var getData = function(qu, sender) {
         word.urdu = word_list.cellsArray[9]
         urdu = ''
         if(word.urdu) {
-          urdu = '_اردو_' + word.urdu
+          urdu = '_اردو_:' + word.urdu
         }
         console.log("Urdu " + word.urdu);
         word_display = '*' + word.title + '*\n' + '(`' + word.pronunciation + '`)' + '\n' + word.definition + '\n' + urdu + '\n\n\n' // + JSON.stringify(response.rows)

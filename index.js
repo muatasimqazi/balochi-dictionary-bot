@@ -44,8 +44,8 @@ app.post('/webhook/', function(req, res) {
       let text = event.message.text
       let qu = "select B, D, E where C = '" + text + "'"
 
-      console.log(word);
-      if(word.split(' ') > 2) {
+      // console.log(word);
+      if(text.split(' ').length > 2) {
         var message = "Thank you for reaching out to us. We will get back to you soon."
         sendText(sender, message)
       } else {

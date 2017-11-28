@@ -5,4 +5,4 @@ A Facebook Messenger bot that allows users of the Balochi Dictionary Facebook pa
 * Balochi Dictionary website:
 [www.balochidictionary.com](http://www.balochidictionary.com)
 * Facebook Page:
-[www.balochidictionary.com](www.facebook.com/balochidictionary)
+[www.facebook.com/balochidictionary](www.facebook.com/balochidictionary)

@@ -24,7 +24,7 @@ app.get('/', function(req, res) {
   res.send('Hi I am a chatbot')
 })
 
-let token = "EAAFfncDwieMBAIzNr8GWU5pBKsOv1tDyUm8mZABiUoF2qOfWrutd6TmYud3bhokT5CpEFXq9bkMnABeBpzbwXZCLrcM2fVMuKjHvJ665BhiWjw7gSzGBj1TTWK0QgLAzZAAAgA792xrwrKa1kkZCCrwRZAito20LsOGa483hGHwZDZD"
+let token = '';
 
 
 app.get('/webhook/', function(req, res) {
@@ -61,7 +61,7 @@ app.post('/webhook/', function(req, res) {
 
 var getData = function(qu, sender) {
   sheetrock({
-    url: 'https://docs.google.com/spreadsheets/d/1kZPxVeYzRQQNFGjeIkZ7w_jZN1Cl2NgO3xBi5uIQYII/edit?usp=sharing#gid=0',
+    url: 'url',
     query: qu,
     reset: true,
     callback: function(error, options, response) {
